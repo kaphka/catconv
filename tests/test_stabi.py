@@ -1,10 +1,8 @@
 import catconv.stabi as sb
 import os
+import os.path as op
 import pytest
-
-@pytest.fixture
-def page():
-    return {'path': 'SD_png/SD001/00000001.png'}
+from catfixtures import *
 
 def test_to_change_path():
     conv = {'cat': 'SD_png', 'ext': '.png', 'remove_type': True}
@@ -30,3 +28,8 @@ def test_page_dir(page):
 
 def test_read_text(page):
     sb.read_text(page)
+
+def test_read_catalog(unconv_catalog_dir):
+    assert sb.batches(unconv_catalog_dir) == ['SD001', 'SD002']
+
+
