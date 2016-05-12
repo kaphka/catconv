@@ -60,3 +60,9 @@ def execution_stats(executions):
     not_completed = [execution for execution in executions if not execution['complete']]
     print(np.average(times), 's per job')
     print(len(not_completed),'not completed')
+
+
+def convert_to_png(from_page, to_page):
+    create_dirs(to_page["path"])
+    crop_job = crop(from_page["path"], to_page["path"])
+    return execute_job(crop_job)

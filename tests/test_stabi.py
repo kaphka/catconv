@@ -6,9 +6,10 @@ from catfixtures import *
 
 def test_to_change_path():
     conv = {'cat': 'SD_png', 'ext': '.png', 'remove_type': True}
-    png = sb.change_path('../SD/SD002/TIF/00000643.tif',**conv)
-    target = 'SD_png/SD002/00000643.png'.split(os.sep)
-    assert png.split(os.sep)[-3:] == target
+    png = sb.change_path('../SD/SD002/TIF/00000643.tif', **conv)
+    target = '../SD_png/SD_png002/00000643.png'.split(os.sep)
+    result = png.split(os.sep)
+    assert result == target
 
     remove_ext = {'rel_path': '../'}
     png =  '../SD_png/SD002/00000643.png'
