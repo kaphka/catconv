@@ -42,7 +42,8 @@ def catalog_pages(cat_path, batch='*', ext='.png', amount=None):
 
 def batches(cat_path):
     pattern = op.join(cat_path, '*')
-    return map(op.basename,g.glob(pattern))
+    batches = sorted(map(op.basename,g.glob(pattern)))
+    return batches
 
 def line_index_to_name(idx):
     return '0'+hex((0x010000+(idx)))[2:]
