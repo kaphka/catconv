@@ -1,0 +1,155 @@
+# word abbreviations
+"ad libitum","ad lib."
+Kadenz,Kad.
+Kadenzverfasser,Kad.
+Arrangement,Arr.
+Koproduktion,Koprod.
+Aufnahme,Aufn.
+"ohne Opuszahl","o.op."
+"ohne Opus","o.op."
+Aufzug,Aufz.
+Opus op.
+Ausschnitt,Ausschn.
+Plattennummer,Pl.-Nr.
+Begleitung,Begl.
+Produktion,Prod.
+copyright,c
+Querschnitt,Querschn.
+Einstudierung,Einstud.
+Stimme,St.
+gemischter Chor,gem. Chor
+...stimme,...st.
+...händig,...hdg.
+...stimmig,...stg.
+Instrument,Instr.
+transponiert,transp.
+...instrument,...instr.
+Umdrehungszahl pro Minute,UpM
+Interpret,Interpr.
+Vorlage,Vorl.
+
+Akkordeon,Akk
+Mandoline,Md
+Altinstrument,Alt-Instr.
+Oboe,Ob
+Arpeggione,Arp
+Orchester,Orch
+Baßinstrument,Baß-Instr.
+Baßinstrumente,Baß-Instr.
+Orgel,Org
+Basso continuo,Bc
+Pauke,Pk
+Blasorchester,Blasorch
+Pikkoloflöte,Pikkolofl
+Blockflöte,Blfl
+Posaune,Pos
+Celesta,Cel
+Saxophon,Sax
+Cembalo,Cemb
+# instrumente
+Schlagzeug,Schz
+# Diskantinstrument → Sopraninstrument
+Sopraninstrument,Sopr-Instr.
+Sopraninstrumente,Sopr-Instr.
+# Elektrisch...,E-...
+# electric ...,E-...
+Streichorchester,Streichorch
+Englischhorn,Ehr
+Synthesizer,Synth
+Ensemble,Ensemble
+Tasteninstrument,Tasteninstr.
+Tasteninstrumente,Tasteninstr.
+Fagott,Fg
+Tenorinstrument,Ten-Instr.
+Tenorinstrumente,Ten-Instr.
+Flöte,Fl
+Trompete,Trp
+Gitarre,Git
+Tuba,Tb
+Harfe,Hf
+Vibraphon,Vib
+Harmonium,Harm
+Viola,Va
+Horn,Hr
+Viola d'amore,Va d'amore
+Klarinette,Klar
+Viola da gamba,Vagb
+Klavier,Kl
+Violine,Vl
+Klavier vierhändig Kl,4hdg.
+Violoncello,Vc
+Kontrabaß,Kb
+Xylophon,Xyl
+Laute,Lt
+Zither,Zth
+
+Alt,Alt
+Kinderchor,Kinderchor
+Bariton,Bar
+Männerchor,Männerchor
+Baß,Baß
+Männerstimme(n),Männerst.
+Baßbariton,Baßbar
+Mezzosopran,Mezzosopr
+# Chor (=gemischter Chor) Chor
+Sopran,Sopr
+Countertenor,Counterten
+Sprechstimme,Sprechst.
+Frauenchor,Frauenchor
+Tenor,Ten
+Frauenstimme,Frauenst.
+Frauenstimmen,Frauenst.
+Singstimme,Singst.
+Singstimmen,Singst.
+
+accordion,acc
+leader,ld
+alto saxophone,as
+lute,lt
+banjo,bj
+mandoline,mand
+baritone saxophone,bs
+organ,org
+bass,b
+percussions,perc
+bongos,bo
+piano,p
+celesta,cel
+saxophone,sax
+saxophones,sax
+clarinet,cl
+soprano saxophone,ss
+conga,cga
+synthesizer,synth
+cornet,co
+tenor saxophone,ts
+drums,dr
+trombone,tb
+electric ..., electronic ...,el-
+trumpet,tp
+English horn,engl-h
+tuba,tu
+flute,fl
+violin,v
+French horn,fr-h
+vibraphone, vibes,vib
+guitar,g
+vocal,voc
+harmonica,harm
+washboard,wbd
+horn,h
+xylophone,xyl
+keyboards,keys
+zahlreiche Instrumente,zahlr. Instr.
+
+Angeblicher Komponist,Angebl. Komp.
+Bearbeiter,Bearb.
+Choreinstudierung,Choreinstud.
+Dirigent,Dir.
+Gesang,Gsg.
+Herausgeber,Hrsg.
+# Person die eine Kadenz komponiert hat Kad.
+Leitung,Ltg.
+Mutmaßlicher Komponist,Mutmaßl. Komp.
+# Person die den Text zu einem musikalischen Werk verfasst hat Text
+Übersetzer,Übers.
