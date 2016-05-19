@@ -12,3 +12,10 @@ def unconv_catalog_dir(request):
     test_dir, _ = os.path.splitext(filename)
     unconv = op.join(test_dir, 'SD')
     return unconv
+
+@pytest.fixture
+def conv_catalog_dir(request):
+    filename = __file__
+    test_dir, _ = os.path.splitext(filename)
+    conv = op.join(test_dir, 'SN')
+    return conv

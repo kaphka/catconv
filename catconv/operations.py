@@ -66,3 +66,4 @@ def convert_to_png(from_page, to_page):
     create_dirs(to_page["path"])
     crop_job = crop(from_page["path"], to_page["path"])
     return execute_job(crop_job)
+

@@ -23,7 +23,7 @@ print("path:", source)
 print("pages:", len(pages))
 
 # limit the amount of pages for testing
-amount = 100
+amount = min(len(pages),100)
 step_size = len(pages) // amount
 
 for page in tqdm(pages[:amount * step_size:step_size]):
@@ -38,6 +38,7 @@ for page in tqdm(pages[:amount * step_size:step_size]):
         co.execute_job(seg_job)
 
 if args.predict:
+    print("Predicting text lines")
     lines = sb.op.join(args.source, "*", "????????", "??????.bin.png")
     pred_job = co.predict(lines, args.predict, 7)
     co.execute_job(pred_job)

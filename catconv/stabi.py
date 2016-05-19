@@ -6,9 +6,11 @@ import os
 import os.path as op
 import ocrolib
 import re
+import copy
+import ujson
 
-TIF_PAGES_GLOB = "{catname}{batch}/TIF/????????{ext}"
-PAGES_GLOB = "{catname}{batch}/????????{ext}"
+TIF_PAGES_GLOB = "{name}{batch}/TIF/????????{ext}"
+PAGES_GLOB = "{name}{batch}/????????{ext}"
 
 class Catalog(object):
     """collection of catalog cards"""
@@ -50,8 +52,12 @@ def change_path(path, cat=None, ext="", remove_type=False, rel_path=None, to_cat
     else: 
         return changed_path 
 
-def convert_path(page, conversion):
-    return {'path': change_path(page['path'], **conversion)}
+def convert_page_path(page, conversion):
+    """create a copy of a page and changes the path"""
+    new_path = change_path(page['path'], **conversion)
+    new_page = copy.deepcopy(page)
+    new_page['path'] = new_path
+    return new_page
 
 def page_dir(page_path):
     """directory named like the image"""
@@ -60,12 +66,12 @@ def page_dir(page_path):
 
 def catalog_pages(cat_path, batch='*', ext='.png', amount=None):
     # pattern = op.join(cat_path, '{}/????????{}'.format(batch, ext))
+    path, name = op.split(cat_path)
     if ext == ".tif":
         pattern = TIF_PAGES_GLOB
     else:
         pattern = PAGES_GLOB
-    catname = op.basename(cat_path)
-    page_glob = op.join(cat_path,pattern.format(catname=catname, batch=batch, ext=ext))
+    page_glob = op.join(path, name, pattern.format(name=name, batch=batch, ext=ext))
     return g.glob(page_glob)
 
 def batches(cat_path):
@@ -113,4 +119,17 @@ def read_text(page):
                 text = sfile.read()
         line['text'] = text
 
+
+def load_catalog(path, selection={}, text_box=False, text=False):
+    name = op.basename(path)
+    pages = sorted(map(page_from_path, catalog_pages(path, **selection)),key=lambda page: page['path']) 
+    for page in pages:
+        if text_box:
+            load_box_positions(page)
+        if text:
+            read_text(page)
+    return {'name': name, 'path': path, 'pages': pages}
+
+def change_paths(cat, conv):
+    cat['pages'] = map(lambda page: convert_page_path(page,conv), cat['pages'])
 
