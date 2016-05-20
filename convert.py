@@ -21,8 +21,10 @@ print("pages:", len(pages))
 
 conversion = {"ext": ".png", "remove_type": True, "to_cat": data_dir,"cat": target_cat_name}
 from_to = [(page, sb.convert_page_path(page, conversion)) for page in pages]
+
 amount = min(len(pages),100)
 step_size = len(from_to) / amount
+
 for ft in tqdm(from_to[:amount * step_size:step_size]):
     co.convert_to_png(*ft)
 
