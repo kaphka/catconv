@@ -26,7 +26,7 @@ print("pages:", len(pages))
 amount = min(len(pages),100)
 step_size = len(pages) // amount
 
-for page in tqdm(pages[:amount * step_size:step_size]):
+for page in tqdm(pages):
     png = page["path"]
     bin_png = sb.change_path(png, ext=".bin.png")
     bin_job = co.binarize(png)
