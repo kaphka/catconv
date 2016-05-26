@@ -29,12 +29,13 @@ step_size = len(pages) // amount
 for page in tqdm(pages):
     png = page["path"]
     bin_png = sb.change_path(png, ext=".bin.png")
+    seg_png = sb.change_path(png, ext=".pseg.png")
     bin_job = co.binarize(png)
     seg_job = co.segment(bin_png)
 
-    if args.binarize:
+    if args.binarize and not sb.op.exists(bin_png):
         co.execute_job(bin_job)
-    if args.segment:
+    if args.segment and not sb.op.exists(seg_png):
         co.execute_job(seg_job)
 
 if args.predict:
