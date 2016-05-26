@@ -17,10 +17,10 @@ def crop(inpath, outpath, right=0, bottom=70):
     return p
 
 def binarize(path):
-    return ['ocropus-nlbin', '-t', '0.5', '-z', '1.0', path]
+    return ['ocropus-nlbin', '-n', '-t', '0.5', '-z', '1.0', path]
 
 def segment(path):
-    return ['ocropus-gpageseg', '--maxcolseps', '0', '--usegauss', '-z', '1.0', path]
+    return ['ocropus-gpageseg','-n', '--maxcolseps', '0', '--usegauss', '-z', '1.0', path]
 
 def predict(path, model_path, n_cpu=1):
     return ['ocropus-rpred', '-Q', str(n_cpu), '-m', model_path, path]
