@@ -9,7 +9,9 @@ import time
 import ocrolib
 import gevent
 from gevent.subprocess import Popen, PIPE, STDOUT
+import logging
 
+logger = logging.getLogger()
 
 def crop(inpath, outpath, right=0, bottom=70):
     cropargs = '-{}-{}'.format(right,bottom)
@@ -52,6 +54,7 @@ def execute_job(process):
         output = sp.check_output(process,stderr=sp.STDOUT)
     except CalledProcessError as e:
         output = e
+        logger.warn('ProcessError {} {}'.format(output, process))
     duration = time.time() - t_start
     return {'output': output, 'time':duration, 'complete': e is None}
 
@@ -62,8 +65,7 @@ def execution_stats(executions):
     print(len(not_completed),'not completed')
 
 
-def convert_to_png(from_page, to_page):
+def convert_to_png(from_page, to_page, conversion_generator=crop):
     create_dirs(to_page["path"])
-    crop_job = crop(from_page["path"], to_page["path"])
+    crop_job = conversion_generator(from_page["path"], to_page["path"])
     return execute_job(crop_job)
-

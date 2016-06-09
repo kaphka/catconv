@@ -27,6 +27,8 @@ def split_path(path):
     pages_dir, file_name = op.split(norm)
     # -> /catalogs/S/S001/TIF/ 00001.tif
     # -> /catalogs/S/S001 00001.tif
+    # page file names may contain multiple dots 
+    page_name = re.sub(r"(\.\w+)+$", "", file_name)
     batch_dir, batch_name = op.split(pages_dir)
     # -> /catalogs/S/S001 TIF
     # -> /catalogs/S S001
@@ -34,7 +36,6 @@ def split_path(path):
         batch_dir, batch_name = op.split(batch_dir)
     data_dir, cat_name = op.split(batch_dir)
     # -> /catalogs S
-    page_name = re.sub(r"\.pseg|\.bin|\.png|\.tif", "", file_name)
     return data_dir, cat_name, batch_name, page_name
 
 
@@ -49,8 +50,8 @@ def change_path(path, cat=None, ext="", remove_type=False, rel_path=None, to_cat
     changed_path = op.join(data_dir, cat_name, batch_name, page_name + ext)
     if rel_path:
         return op.relpath(changed_path, op.normpath(rel_path))
-    else: 
-        return changed_path 
+    else:
+        return changed_path
 
 def convert_page_path(page, conversion):
     """create a copy of a page and changes the path"""
@@ -122,7 +123,7 @@ def read_text(page):
 
 def load_catalog(path, selection={}, text_box=False, text=False):
     name = op.basename(path)
-    pages = sorted(map(page_from_path, catalog_pages(path, **selection)),key=lambda page: page['path']) 
+    pages = sorted(map(page_from_path, catalog_pages(path, **selection)),key=lambda page: page['path'])
     for page in pages:
         if text_box:
             load_box_positions(page)
@@ -132,4 +133,3 @@ def load_catalog(path, selection={}, text_box=False, text=False):
 
 def change_paths(cat, conv):
     cat['pages'] = map(lambda page: convert_page_path(page,conv), cat['pages'])
-

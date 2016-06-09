@@ -16,13 +16,16 @@ def test_to_change_path():
     page = sb.change_path(png, **remove_ext)
     assert page ==  'SD_png/SD002/00000643'
 
-    page_bin = 'Cat/Batch/Page.bin.png' 
+    page_bin = 'Cat/Batch/Page.bin.png'
     assert page_bin == sb.change_path('Cat/Batch/Page.png',ext='.bin.png')
     assert page_bin == sb.change_path('Cat/Batch/Page',ext='.bin.png')
     assert 'Cat/Batch/Page' == sb.change_path(page_bin)
 
-    page_bin = 'SN/SN001/Page.bin.png' 
+    page_bin = 'SN/SN001/Page.bin.png'
     assert page_bin == sb.change_path('SN/SN001/Page.png',ext='.bin.png',cat="SN")
+
+    page_bin = 'SN/SN001/Page.bin.png'
+    assert page_bin == sb.change_path('SN/SN001/Page.jpg',ext='.bin.png',cat="SN")
 
 def test_page_dir(page):
     assert sb.page_dir(page['path']) == 'SD_png/SD001/00000001'

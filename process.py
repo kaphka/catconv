@@ -2,6 +2,8 @@ import argparse
 import catconv.operations as co
 import catconv.stabi as sb
 from tqdm import tqdm
+import logging
+from logging.config import fileConfig
 
 parser = argparse.ArgumentParser()
 parser.add_argument("source")
@@ -12,15 +14,20 @@ parser.add_argument("-b", "--binarize", help="create binary images",
 parser.add_argument("-s", "--segment", help="extract text lines",
                     action="store_true")
 parser.add_argument("-p", "--predict", help="predict text", required=False)
+parser.add_argument("-e", "--ext", help="file-extesion", required=False)
 args = parser.parse_args()
+
+fileConfig('logging_config.ini')
+logger = logging.getLogger()
 
 source = sb.op.normpath(args.source)
 data_dir, cat_name = sb.op.split(source)
-pages = map(sb.page_from_path, sb.catalog_pages(source))
+catalog = sb.load_catalog(source, {'ext': args.ext}, text_box=True, text=True)
+pages = catalog['pages']
+# pages = map(sb.page_from_path, sb.catalog_pages(source))
 
-print("Source catalog:")
-print("path:", source)
-print("pages:", len(pages))
+logger.info('Processing {}'.format(catalog['name']))
+logger.info("Number of pages {}".format( len(pages)))
 
 # limit the amount of pages for testing
 amount = min(len(pages),100)
