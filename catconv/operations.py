@@ -1,15 +1,19 @@
-import glob as g
-import ujson
+import logging
 import os
-import os.path as op
 import re
-import subprocess as sp
 from subprocess import CalledProcessError
 import time
-import ocrolib
+
 import gevent
-from gevent.subprocess import Popen, PIPE, STDOUT
-import logging
+from gevent.subprocess import Popen, PIPE
+import ocrolib
+import ujson
+
+import glob as g
+import numpy as np
+import os.path as op
+import subprocess as sp
+
 
 logger = logging.getLogger()
 

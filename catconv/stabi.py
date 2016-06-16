@@ -1,21 +1,24 @@
 """This modules provides functions to process the music catalog provided by
 the Staatsbibliothek Berlin"""
-import glob as g
-# import ujson
-import os
-import os.path as op
-import ocrolib
-import re
 import copy
+import os
+import re
+
+import ocrolib
 import ujson
 
+import glob as g
+import os.path as op
+
+
+# import ujson
 TIF_PAGES_GLOB = "{name}{batch}/TIF/????????{ext}"
 PAGES_GLOB = "{name}{batch}/????????{ext}"
 
 class Catalog(object):
     """collection of catalog cards"""
-    name = ""
-    path = ""
+
+
     def __init__(self, path):
         self.name = op.basename(path)
         self.path = path
@@ -27,7 +30,7 @@ def split_path(path):
     pages_dir, file_name = op.split(norm)
     # -> /catalogs/S/S001/TIF/ 00001.tif
     # -> /catalogs/S/S001 00001.tif
-    # page file names may contain multiple dots 
+    # page file names may contain multiple dots
     page_name = re.sub(r"(\.\w+)+$", "", file_name)
     batch_dir, batch_name = op.split(pages_dir)
     # -> /catalogs/S/S001 TIF

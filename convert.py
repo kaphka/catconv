@@ -1,7 +1,10 @@
 import argparse
+
+from tqdm import tqdm
+
 import catconv.operations as co
 import catconv.stabi as sb
-from tqdm import tqdm
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("source")

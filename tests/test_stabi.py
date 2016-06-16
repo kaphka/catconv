@@ -1,8 +1,11 @@
-import catconv.stabi as sb
 import os
-import os.path as op
+
 import pytest
+
+import catconv.stabi as sb
 from catfixtures import *
+import os.path as op
+
 
 def test_to_change_path():
     conv = {'cat': 'SD_png', 'ext': '.png', 'remove_type': True}

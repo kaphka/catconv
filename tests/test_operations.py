@@ -1,6 +1,7 @@
-from catfixtures import *
 import catconv.operations as co
 import catconv.stabi as sb
+from catfixtures import *
+
 
 def test_convert_to_png(tmpdir, unconv_catalog_dir):
     data_dir, cat_name = sb.op.split(unconv_catalog_dir)
