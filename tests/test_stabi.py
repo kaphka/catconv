@@ -61,3 +61,5 @@ def test_load_catalog(conv_catalog_dir):
     catalog = sb.load_catalog(conv_catalog_dir)
     sb.change_paths(catalog, {'rel_path': conv_catalog_dir})
     assert cat_structure == catalog
+
+

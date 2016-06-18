@@ -122,7 +122,9 @@ def read_text(page):
             with open(path, 'rb') as sfile:
                 text = sfile.read()
         line['text'] = text
-
+        
+def get_cat_name(batch_name):
+    return re.match('([A-S]+)', batch_name).group(0)
 
 def load_catalog(path, selection={}, text_box=False, text=False):
     name = op.basename(path)

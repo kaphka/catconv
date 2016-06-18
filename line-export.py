@@ -4,6 +4,10 @@ from logging.config import fileConfig
 import tinydb
 from tinydb import Query
 from tqdm import tqdm
+import catconv.stabi as st
+import os.path as op
+import os
+
 
 fileConfig('logging_config.ini')
 logger = logging.getLogger()
@@ -19,4 +23,8 @@ db = tinydb.TinyDB(args.line_text_db_file)
 lines = db.table('lines')
 
 for line in lines.all():
-    print(line)
+    batch, page, line_id = line['id'].split('/')
+    cat_name = st.get_cat_name(batch)
+    page_path = op.join( cat_name, batch, page)
+    target_dir = op.join(args.catalog_source_dir, page_path)
+    print(target_dir)
