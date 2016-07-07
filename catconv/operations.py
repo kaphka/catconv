@@ -21,7 +21,12 @@ def crop(inpath, outpath, right=0, bottom=70):
     cropargs = '-{}-{}'.format(right,bottom)
     p = ['convert', inpath, '-crop', cropargs, outpath]
     return p
-
+    
+def crop_resize(src, target, right=0, bottom=70):
+    """rescale image to 300dpi"""
+    cropargs = '-{}-{}'.format(right,bottom)
+    return ['convert', src, '-crop' , cropargs, '-resize', '150%', target]
+    
 def binarize(path):
     return ['ocropus-nlbin', '-n', '-t', '0.5', '-z', '1.0', path]
 
@@ -69,7 +74,7 @@ def execution_stats(executions):
     print(len(not_completed),'not completed')
 
 
-def convert_to_png(from_page, to_page, conversion_generator=crop):
+def convert_to_png(from_page, to_page, conversion_generator=crop_resize):
     create_dirs(to_page["path"])
     crop_job = conversion_generator(from_page["path"], to_page["path"])
     return execute_job(crop_job)

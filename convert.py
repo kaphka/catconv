@@ -1,9 +1,15 @@
 import argparse
+import signal
 
 from tqdm import tqdm
 
 import catconv.operations as co
 import catconv.stabi as sb
+
+exit = False
+def signal_handler(signal, frame):
+    print('You pressed Ctrl+C!')
+    exit = True
 
 
 parser = argparse.ArgumentParser()
@@ -22,12 +28,15 @@ print("Source catalog:")
 print("path:", source)
 print("pages:", len(pages))
 
-conversion = {"ext": ".png", "remove_type": True, "to_cat": data_dir,"cat": target_cat_name}
+conversion = {"ext": ".jpg", "remove_type": True, "to_cat": data_dir,"cat": target_cat_name}
 from_to = [(page, sb.convert_page_path(page, conversion)) for page in pages]
 
-amount = min(len(pages),10000)
+amount = min(len(pages),20000)
 step_size = len(from_to) / amount
-
-for ft in tqdm(from_to[:amount * step_size:step_size]):
+# [:amount * step_size:step_size]
+for ft in tqdm(from_to):
+    if exit:
+        break
     co.convert_to_png(*ft)
+    
 
